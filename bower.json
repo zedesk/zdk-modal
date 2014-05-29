@@ -1,0 +1,28 @@
+{
+  "name": "zdk-modal",
+  "version": "0.0.1",
+  "authors": [
+    "zedesk.net <dev@zedesk.net>"
+  ],
+  "description": "A modal polymer web component",
+  "main": "zdk-modal.html",
+  "keywords": [
+    "modal",
+    "panel",
+    "polymer",
+    "component",
+    "web-components"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/zedesk/zdk-modal",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "polymer/polymer#~0.2.4"
+  }
+}

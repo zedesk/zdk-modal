@@ -1,0 +1,80 @@
+<link rel="import" href="/bower_components/polymer/polymer.html">
+
+<polymer-element name="zdk-modal" attributes="width, height, show, top, bottom, center">
+    <template>
+        <style>
+            :host { 
+                    display: none; overflow:auto; position:fixed; 
+                    top: 0; bottom: 0; left: 0; right: 0;
+            }
+            div#bg {
+                position:absolute;
+                background: rgba(132, 132, 132, 0.63);
+                width:100%;
+                height:100%;
+                
+            }
+            div#modal {
+                position:absolute;
+                top: 0; bottom: 0; left: 0; right: 0; margin: auto;
+                box-sizing:content-box;
+            }
+        </style>
+        <div id="bg"></div>
+		<div id="modal">
+            <content></content>
+        </div>
+	</template>
+    <script>
+    Polymer('zdk-modal', {
+        bottom:false,
+        top:false,
+        center:true,
+        ready: function() {
+            if(!this.width) { this.width = 300; }
+            if(!this.height) { this.height = 300; }
+            this.update();
+        },
+        update: function() {
+            this.$.modal.style.width = this.width + "px";
+            this.$.modal.style.height = this.height + "px";
+            if(this.attributes["show"]) this.activate();
+        },
+        widthChanged: function(oldValue, newValue) {
+            newValue = parseInt(newValue,10);
+            if(newValue === oldValue) return;
+            this.width = newValue;
+            this.update();
+        },
+        topChanged: function(oldValue, newValue) {
+            this.$.modal.style.margin = "auto";
+            if(newValue) this.$.modal.style.marginTop = "0px";
+        },
+        bottomChanged: function(oldValue, newValue) {
+            this.$.modal.style.margin = "auto";
+            if(newValue) this.$.modal.style.marginBottom = "0px";
+        },
+        centerChanged: function(oldValue, newValue) {
+            this.$.modal.style.margin = "auto"; 
+        },
+        showChanged: function(oldValue, newValue) {
+            if(newValue === oldValue) return;
+            this.show = newValue;
+            this.update();
+        },
+        activate: function() {
+            this.setAttribute("show","");
+            this.show = true;
+            var parent = this.parentElement;
+            parent.appendChild(this);
+            this.style.display = "block";
+        },
+        hide: function() {
+            this.style.display = "none";
+            this.removeAttribute("show");
+        },
+        toggle: function() {
+        }
+    });
+    </script>
+</polymer-element>
