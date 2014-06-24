@@ -34,14 +34,14 @@
 		</zdk-modal>
 		<p><button onclick="show()">show</button></p>
 		<script>
-		window.addEventListener("polymer-ready", function() {
+		(function() {
 			var unresolveds = document.querySelector("[unresolved]") || [];
 			[].slice.call(unresolveds,0).forEach( function(item) {
 			    item.removeAttribute("unresolved");
 			});
 			var modal = document.querySelector("zdk-modal");
 			setTimeout( function() { modal.width = 500; show(); }, 5000);
-		},false);
+		})();
 		
 		function hide() {
 			var modal = document.querySelector("zdk-modal");
