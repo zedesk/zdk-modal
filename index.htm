@@ -9,7 +9,6 @@
 		
 		<style>
 		body { font-family: Verdana; font-size: 15px; }
-		
 		[unresolved] { opacity:0; }
 		</style>
 	</head>
@@ -30,7 +29,7 @@
 			}
 			</style>
 		<zdk-marked src="/bower_components/zdk-modal/README.md"></zdk-marked>
-		<zdk-modal id="modal1" width="400" height="300" show bottom >
+		<zdk-modal id="modal1" width="400" height="300" bottom >
 			<zdk-marked class="content" src="/bower_components/zdk-modal/README.md"></zdk-marked>
 		</zdk-modal>
 		<p><button onclick="show()">show</button></p>
@@ -40,14 +39,16 @@
 			[].slice.call(unresolveds,0).forEach( function(item) {
 			    item.removeAttribute("unresolved");
 			});
+			var modal = document.querySelector("zdk-modal");
 			setTimeout( function() { modal.width = 500; show(); }, 5000);
 		},false);
 		
-		var modal = document.querySelector("zdk-modal");
 		function hide() {
+			var modal = document.querySelector("zdk-modal");
 			setTimeout(function() { modal.hide() }, 10000);
 		}
 		function show() { 
+			var modal = document.querySelector("zdk-modal");
 			modal.activate();
 			hide();
 		};
