@@ -18,7 +18,7 @@ it's very simple, first get the component thanks to the bower command :
 Then in the header of your html page, adds :
 
     <script src="/bower_components/platform/platform.js"></script>
-    <link rel="import" href="zdk-modal.html">
+    <link rel="import" href="/bower_components/zdk-modal/zdk-modal.html">
 
 And finally in the body of your page :
 
@@ -30,12 +30,21 @@ And finally in the body of your page :
 
    - __width__ defines the width of the panel
    - __height__ defines the height of the panel
-    
-position attributes
+   - __type__ position attribute :
+     - __top__ the panel is displayed at the top of the screen
+     - __bottom__ the panel is displayed at the bottom of the screen
+     - __middle__ the panel is displayed at the middle of the screen ( default )
+	 
+## Methods
 
-  - __top__ the panel is displayed at the top of the screen
-  - __bottom__ the panel is displayed at the bottom of the screen
-  - __center__ the panel is displayed at the middle of the screen ( default )
+__show()__ display the component
+__hide()__ hide the component
+
+These actions could also be done by chnaging the class of the object. if the classList contain "show" then componet is displayed.
+
+## Demo
+
+[demo](demo.htm)
   
 ## examples
 
@@ -44,7 +53,7 @@ position attributes
         <meta charset="utf-8">
         <title>modal box component</title>
         <script src="/bower_components/platform/platform.js"></script>
-        <link rel="import" href="zdk-modal.html">
+        <link rel="import" href="/bower_components/zdk-marked/zdk-modal.html">
         <link rel="import" href="/bower_components/zdk-marked/zdk-marked.htm">
     </head>
     <body>
@@ -64,12 +73,12 @@ position attributes
             border-radius:20px;
         }
         </style>
-        <zdk-modal id="modal1" width="400" height="300" show bottom >
+        <zdk-modal id="modal1" width="400" height="300" class="show" type="bottom" >
             <div class="content">
-            <zdk-marked src="README.md"></zdk-marked>
+            <zdk-marked src="/bower_components/zdk-marked/README.md"></zdk-marked>
             </div>
         </zdk-modal>
-        <zdk-marked src="README.md"></zdk-marked>
+        <zdk-marked src="/bower_components/zdk-marked/README.md"></zdk-marked>
         <p><button onclick="show()">show</button></p>
         <script>
         var modal = document.querySelector("zdk-modal");
@@ -77,7 +86,7 @@ position attributes
             setTimeout(function() { modal.hide() }, 10000);
         }
         function show() { 
-            modal.activate();
+            modal.show();
             hide();
         };
         setTimeout( function() { modal.width = 500; show(); }, 5000);
