@@ -46,18 +46,21 @@
 		<script>
 		(function() {
 			var modal = document.querySelector("zdk-modal");
-			setTimeout( function() { modal.width = 500; show(); }, 5000);
+			setTimeout( function() { if(modal) { modal.width = 500; show(); } }, 5000);
+			
+			function hide() {
+				var modal = document.querySelector("zdk-modal");
+				setTimeout(function() { modal.hide() }, 10000);
+			}
+			
+			function show() { 
+				var modal = document.querySelector("zdk-modal");
+				modal.show();
+				hide();
+			};
 		})();
 		
-		function hide() {
-			var modal = document.querySelector("zdk-modal");
-			setTimeout(function() { modal.hide() }, 10000);
-		}
-		function show() { 
-			var modal = document.querySelector("zdk-modal");
-			modal.show();
-			hide();
-		};
+		
 		</script>
     </body>
 </html>
