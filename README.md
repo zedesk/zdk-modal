@@ -30,12 +30,17 @@ And finally in the body of your page :
 
    - __width__ defines the width of the panel
    - __height__ defines the height of the panel
-    
-position attributes
+   - __type__ position attribute :
+     - __top__ the panel is displayed at the top of the screen
+     - __bottom__ the panel is displayed at the bottom of the screen
+     - __middle__ the panel is displayed at the middle of the screen ( default )
+	 
+## Methods
 
-  - __top__ the panel is displayed at the top of the screen
-  - __bottom__ the panel is displayed at the bottom of the screen
-  - __center__ the panel is displayed at the middle of the screen ( default )
+__show()__ display the component
+__hide()__ hide the component
+
+These actions could also be done by chnaging the class of the object. if the classList contain "show" then componet is displayed.
   
 ## examples
 
@@ -64,7 +69,7 @@ position attributes
             border-radius:20px;
         }
         </style>
-        <zdk-modal id="modal1" width="400" height="300" show bottom >
+        <zdk-modal id="modal1" width="400" height="300" class="show" type="bottom" >
             <div class="content">
             <zdk-marked src="README.md"></zdk-marked>
             </div>
@@ -77,7 +82,7 @@ position attributes
             setTimeout(function() { modal.hide() }, 10000);
         }
         function show() { 
-            modal.activate();
+            modal.show();
             hide();
         };
         setTimeout( function() { modal.width = 500; show(); }, 5000);

@@ -5,10 +5,10 @@
 		<title>modal box component</title>
 		<script src="../platform/platform.js"></script>
 		<link rel="import" href="zdk-modal.html">
-		<link rel="import" href="/bower_components/zdk-marked/zdk-marked.html">
+		<link rel="import" href="../zdk-marked/zdk-marked.html">
 		
 		<style>
-		body { font-family: Verdana; font-size: 15px; }
+		body { font-family: Verdana; font-size: 15px; margin:20px; }
 		[unresolved] { opacity:0; }
 		</style>
 	</head>
@@ -27,18 +27,24 @@
 				overflow: auto;
 				border-radius:20px;
 			}
+			zdk-modal[type=bottom] zdk-marked {
+				border-radius:20px 20px 0px 0px;
+			}
+			zdk-modal[type=top] zdk-marked {
+				border-radius:0px 0px 20px 20px;
+			}
+			zdk-modal[type=middle] zdk-marked {
+				border-radius:20px 20px 20px 20px;
+				background:lavender;
+			}
 			</style>
-		<zdk-marked src="/bower_components/zdk-modal/README.md"></zdk-marked>
-		<zdk-modal id="modal1" width="400" height="300" bottom >
-			<zdk-marked class="content" src="/bower_components/zdk-modal/README.md"></zdk-marked>
+		<zdk-marked src="README.md"></zdk-marked>
+		<zdk-modal id="modal1" width="400" height="300" type="bottom" >
+			<zdk-marked class="content" src="README.md"></zdk-marked>
 		</zdk-modal>
 		<p><button onclick="show()">show</button></p>
 		<script>
 		(function() {
-			var unresolveds = document.querySelector("[unresolved]") || [];
-			[].slice.call(unresolveds,0).forEach( function(item) {
-			    item.removeAttribute("unresolved");
-			});
 			var modal = document.querySelector("zdk-modal");
 			setTimeout( function() { modal.width = 500; show(); }, 5000);
 		})();
@@ -49,7 +55,7 @@
 		}
 		function show() { 
 			var modal = document.querySelector("zdk-modal");
-			modal.activate();
+			modal.show();
 			hide();
 		};
 		</script>
