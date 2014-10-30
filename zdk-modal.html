@@ -38,6 +38,7 @@
     <script>
     Polymer('zdk-modal', {
 		closebutton:true,
+		timer:null,
         ready: function() {
             if(!this.width) { this.width = 300; }
             if(!this.height) { this.height = 300; }
@@ -97,9 +98,14 @@
         hide: function() {
             this.removeAttribute("show");
 			this.classList.remove("show");
+			clearTimeout(this.timer);
+			this.timer = null;
         },
-        toggle: function() {
-        }
+		timeout: function( time ) {
+			if(!time) return;
+			var that = this;
+			this.timer = setTimeout(function() { that.hide() }, timeout);
+		}
     });
     </script>
 </polymer-element>
