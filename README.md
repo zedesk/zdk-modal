@@ -28,6 +28,7 @@ And finally in the body of your page :
 
 ## Attributes
 
+   - __closebutton__ ( boolean ) show the close button, by default the button is shown to hide it : `closebutton="false"`
    - __width__ defines the width of the panel
    - __height__ defines the height of the panel
    - __type__ position attribute :
@@ -38,9 +39,12 @@ And finally in the body of your page :
 ## Methods
 
 __show()__ display the component
+
 __hide()__ hide the component
 
-These actions could also be done by chnaging the class of the object. if the classList contain "show" then componet is displayed.
+These actions could also be done by changing the class of the object. if the classList contain "show" then component is automatically displayed.
+
+__timeout(time)__ shows the modal box for time in seconds, if time is set to zero the box never automatically close.
 
 ## Demo
 
@@ -82,14 +86,11 @@ These actions could also be done by chnaging the class of the object. if the cla
         <p><button onclick="show()">show</button></p>
         <script>
         var modal = document.querySelector("zdk-modal");
-        function hide() {
-            setTimeout(function() { modal.hide() }, 10000);
-        }
         function show() { 
             modal.show();
-            hide();
+            modal.timeout(5000);
         };
-        setTimeout( function() { modal.width = 500; show(); }, 5000);
+        setTimeout( function() { modal.width = 500; show(); }, 2000);
         </script>
     </body>
     </html>
