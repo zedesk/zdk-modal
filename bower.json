@@ -22,10 +22,10 @@
 		"test",
 		"tests"
 	],
-	"dependencies": {
-		"polymer": "polymer#0.3.3"
-	},
 	"devDependencies": {
 		"zdk-marked":"zdk-marked#0.0.3"
 	}
+  "dependencies": {
+    "polymer": "Polymer/polymer#0.4.2",
+  }
 }
