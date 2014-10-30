@@ -1,6 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../core-icons/core-icons.html">
 
-<polymer-element name="zdk-modal" attributes="width, height, type">
+<polymer-element name="zdk-modal" attributes="width height type closebutton">
     <template>
         <style>
             :host { 
@@ -21,17 +22,29 @@
                 top: 0; bottom: 0; left: 0; right: 0; margin: auto;
                 box-sizing:content-box;
             }
+			core-icon[icon="cancel"] {
+				position: absolute;
+				right: -20px;
+				width: 40px;
+				height: 40px;
+			}
         </style>
         <div id="bg"></div>
 		<div id="modal">
+			<core-icon id="closebtn" icon="cancel" on-click={{hide}}></core-icon>
             <content></content>
         </div>
 	</template>
     <script>
     Polymer('zdk-modal', {
+		closebutton:true,
+		timer:null,
         ready: function() {
             if(!this.width) { this.width = 300; }
             if(!this.height) { this.height = 300; }
+			if(!this.closebutton) {
+				this.$.closebtn.style.display = "none";
+			}
             this.update();
         },
         update: function() {
@@ -51,16 +64,30 @@
 					case "top":
 						this.setAttribute("type","top");
 						this.$.modal.style.marginTop = "0px";
+						this.$.closebtn.style.top = null;
+						this.$.closebtn.style.bottom = "-20px";
 						break;
 					case "bottom":
 						this.setAttribute("type","bottom");
 						this.$.modal.style.marginBottom = "0px";
+						this.$.closebtn.style.bottom = null;
+						this.$.closebtn.style.top = "-20px";
 						break;
 					case "middle":
 						this.setAttribute("type","middle");
+						this.$.closebtn.style.bottom = null;
+						this.$.closebtn.style.top = "-20px";
 						break;
 					default:
 						break;
+			}
+		},
+		closebuttonChanged: function(oldValue,newValue) {
+			this.closebutton = newValue;
+			if(!this.closebutton) {
+				this.$.closebtn.style.display = "none";
+			} else {
+				this.$.closebtn.style.display = null;
 			}
 		},
         show: function() {
@@ -71,9 +98,14 @@
         hide: function() {
             this.removeAttribute("show");
 			this.classList.remove("show");
+			clearTimeout(this.timer);
+			this.timer = null;
         },
-        toggle: function() {
-        }
+		timeout: function( time ) {
+			if(!time) return;
+			var that = this;
+			this.timer = setTimeout(function() { that.hide() }, timeout);
+		}
     });
     </script>
 </polymer-element>

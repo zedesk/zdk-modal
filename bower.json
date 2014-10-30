@@ -1,31 +1,32 @@
 {
-	"name": "zdk-modal",
-	"version": "0.1.0",
-	"authors": [
-		"zedesk.net <dev@zedesk.net>"
-	],
-	"description": "A modal polymer web component",
-	"main": "zdk-modal.html",
-	"keywords": [
-		"modal",
-		"panel",
-		"polymer",
-		"component",
-		"web-components"
-	],
-	"license": "MIT",
-	"homepage": "https://github.com/zedesk/zdk-modal",
-	"ignore": [
-		"**/.*",
-		"node_modules",
-		"bower_components",
-		"test",
-		"tests"
-	],
-	"dependencies": {
-		"polymer": "polymer#0.3.3"
-	},
-	"devDependencies": {
-		"zdk-marked":"zdk-marked#0.0.3"
-	}
+  "name": "zdk-modal",
+  "version": "0.2.0",
+  "authors": [
+    "zedesk.net <dev@zedesk.net>"
+  ],
+  "description": "A modal polymer web component",
+  "main": "zdk-modal.html",
+  "keywords": [
+    "modal",
+    "panel",
+    "polymer",
+    "component",
+    "web-components"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/zedesk/zdk-modal",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#0.4.2",
+    "core-icons": "Polymer/core-icons#~0.4.2"
+  },
+  "devDependencies": {
+    "zdk-marked":"zdk-marked#0.1.0"
+  }
 }

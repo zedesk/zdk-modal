@@ -98,6 +98,9 @@
 					<div class="row ">
 						<label for="timeout">Timeout : </label><input type="number" value="10" id="timeout" />
 					</div>
+					<div class="row ">
+						<label for="closebtn">Close button : </label><input type="checkbox" checked id="closebtn" />
+					</div>
 				</div>
 			</div>
 			<footer>
@@ -105,16 +108,11 @@
 			</footer>
 			</form>
 		</div>
-		<zdk-modal id="modal1" width="400" height="300" type="bottom" >
+		<zdk-modal id="modal1" width="400" height="300" type="bottom" closebutton="true">
 			<zdk-marked class="content" src="README.md"></zdk-marked>
 		</zdk-modal>
 
 		<script>
-
-		function hide(timeout) {
-			var modal = document.querySelector("zdk-modal");
-			setTimeout(function() { modal.hide() }, timeout);
-		}
 			
 		function show(e) { 
 			var form = document.forms["demo"];
@@ -122,10 +120,11 @@
 			modal.height = form.height.value;
 			modal.width = form.width.value;
 			modal.type = form.type.value;
+			modal.closebutton = form.closebtn.checked?true:false;
 			timeout = parseInt(form.timeout.value,10)*1000;
 			
 			modal.show();
-			hide(timeout);
+			modal.timeout(timeout);
 			return false;
 		};
 		
