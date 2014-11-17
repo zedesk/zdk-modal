@@ -28,5 +28,6 @@
   },
   "devDependencies": {
     "zdk-marked": "zdk-marked#0.2.0",
+    "form2js": "*"
   }
 }
