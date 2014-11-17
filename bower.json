@@ -1,6 +1,6 @@
 {
   "name": "zdk-modal",
-  "version": "0.2.0",
+  "version": "0.3.0-pre",
   "authors": [
     "zedesk.net <dev@zedesk.net>"
   ],
@@ -23,10 +23,11 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#0.4.2",
-    "core-icons": "Polymer/core-icons#~0.4.2"
+    "polymer": "Polymer/polymer#~0.5.1",
+    "core-icons": "Polymer/core-icons#~0.5.1"
   },
   "devDependencies": {
-    "zdk-marked":"zdk-marked#0.1.0"
+    "zdk-marked": "zdk-marked#0.2.0",
+    "form2js": "*"
   }
 }
