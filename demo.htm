@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="utf-8">
 		<title>modal box component - demo</title>
-		<script src="../platform/platform.js"></script>
+		<script src="../webcomponentsjs/webcomponents.min.js"></script>
 		<link rel="import" href="zdk-modal.html">
 		<link rel="import" href="../zdk-marked/zdk-marked.html">
+		<script src="../form2js/src/form2js.js"></script>
 		
 		<style>
 		html, body { height:100% }
 		body { font-family: Verdana; font-size: 15px; margin:20px; }
-		[unresolved] { opacity:0; }
 			div.panel {
 				border:1px solid black;
 				padding: 10px;
@@ -75,12 +75,12 @@
 			}
 			</style>
 		<div class="panel">
-			<form name="demo" action="">
+			<form name="demo" onsubmit="return false;">
 			<div class="row">
-				<label for="width">Width : </label><input type="number" id="width" value="400" />
+				<label for="width">Width : </label><input type="number"  name="width" id="width" value="400" />
 			</div>
 			<div class="row">
-				<label for="height">Height : </label><input type="number" id="height" value="300" />
+				<label for="height">Height : </label><input type="number" name="height" id="height" value="300" />
 			</div>
 			<div class="p1">
 				<div class="column">
@@ -96,10 +96,10 @@
 				</div>
 				<div class="column">
 					<div class="row ">
-						<label for="timeout">Timeout : </label><input type="number" value="10" id="timeout" />
+						<label for="timeout">Timeout : </label><input type="number" value="10" name="timeout" id="timeout" />
 					</div>
 					<div class="row ">
-						<label for="closebtn">Close button : </label><input type="checkbox" checked id="closebtn" />
+						<label for="closebtn">Close button : </label><input type="checkbox" checked name="closeBtn" id="closebtn" />
 					</div>
 				</div>
 			</div>
@@ -116,12 +116,13 @@
 			
 		function show(e) { 
 			var form = document.forms["demo"];
+			var obj = form2js(form);
 			var modal = document.querySelector("zdk-modal");
-			modal.height = form.height.value;
-			modal.width = form.width.value;
-			modal.type = form.type.value;
+			modal.height = obj.height;
+			modal.width = obj.width;
+			modal.type = obj.type;
 			modal.closebutton = form.closebtn.checked?true:false;
-			timeout = parseInt(form.timeout.value,10)*1000;
+			timeout = parseInt(obj.timeout,10)*1000;
 			
 			modal.show();
 			modal.timeout(timeout);
