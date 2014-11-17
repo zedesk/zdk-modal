@@ -21,6 +21,8 @@
                 position:absolute;
                 top: 0; bottom: 0; left: 0; right: 0; margin: auto;
                 box-sizing:content-box;
+				max-height:80%;
+				max-width:80%;
             }
 			core-icon[icon="cancel"] {
 				position: absolute;
@@ -40,21 +42,27 @@
 		closebutton:true,
 		timer:null,
         ready: function() {
-            if(!this.width) { this.width = 300; }
-            if(!this.height) { this.height = 300; }
+            //if(!this.width) { this.width = 300; }
+            //if(!this.height) { this.height = 300; }
 			if(!this.closebutton) {
 				this.$.closebtn.style.display = "none";
 			}
             this.update();
         },
         update: function() {
-            this.$.modal.style.width = this.width + "px";
-            this.$.modal.style.height = this.height + "px";
+            this.$.modal.style.width = this.width?this.width+"px":"80%";
+            this.$.modal.style.height = this.height?this.height+"px":null;
         },
         widthChanged: function(oldValue, newValue) {
             newValue = parseInt(newValue,10);
             if(newValue === oldValue) return;
             this.width = newValue;
+            this.update();
+        },
+        heightChanged: function(oldValue, newValue) {
+            newValue = parseInt(newValue,10);
+            if(newValue === oldValue) return;
+            this.height = newValue;
             this.update();
         },
 		typeChanged: function(oldValue,newValue) {
